@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: nyc_taxi_raw
+    schema: nyc_taxi_raw
+    tables:
+      - name: raw_nyc_taxi_trips
+
+models:
+  - name: stg_nyc_taxi_trips
+    description: Staging model for raw NYC taxi trips
+  - name: dim_borough
+    description: Dimension table for boroughs
+  - name: fact_trip_summary
+    description: Fact table with trip summary metrics
