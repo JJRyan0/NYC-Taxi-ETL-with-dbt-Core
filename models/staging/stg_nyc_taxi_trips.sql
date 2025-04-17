@@ -12,4 +12,4 @@ SELECT
     passenger_count,
     payment_type,
     EXTRACT(EPOCH FROM (dropoff_datetime - pickup_datetime)) / 60 AS trip_duration_min
-FROM base;
+FROM base
