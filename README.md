@@ -144,11 +144,45 @@ nyc_taxi_dbt/
 
 __4.  Run and build the models in DBT__
 
-Run dbt models
+- Run dbt models:
+
+```
+bash
+
+dbt test
+
+```
+
 ```
 bash
 nyc_taxi_dbt % dbt run
+
 ```
 
 <img width="845" alt="image" src="https://github.com/user-attachments/assets/b9ff44b0-153d-4df6-ae47-2728d3c22f00" />
+
+
+__5. Document the Models__
+
+- Generate catalog for documentation
+
+```
+bash
+
+nyc_taxi_dbt % dbt docs generate
+
+```
+
+
+- Generate documentation server
+
+```
+bash
+
+ nyc_taxi_dbt % dbt docs serve
+
+```
+
+<img width="1412" alt="image" src="https://github.com/user-attachments/assets/fc88388d-280f-4a7c-b392-8ab25c76d59d" />
+
 
