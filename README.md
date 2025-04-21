@@ -2,8 +2,8 @@
 
 This is a sample dbt project for transforming NYC Taxi trip data using PostgreSQL.
 
-<img width="430" alt="image" src="https://github.com/user-attachments/assets/35f5097e-4cbe-44af-a9bb-58b8f2662d85" />
 
+![Screenshot 2025-04-21 at 11 06 17 AM](https://github.com/user-attachments/assets/b6b3532a-57ce-49e8-a5e4-af17e6345ac1)
 
 
 ## Database and dbt project set up
@@ -12,27 +12,26 @@ __1. Create Raw Schema in postgres CLI__
 
 - Connect to the database.
 
-```
-bash
+```bash
 
 ~ % psql -h localhost -U postgres -d nyc_taxi
 ```
 
 - Create the new raw schema called nyc_taxi_raw
 
-```
-pgsql
+```sql
 
-nyc_taxi=#
+--nyc_taxi=#
 
 create schema if not exists nyc_taxi_raw;
 
 CREATE SCHEMA
+     
 ```
+
 - List schemas created:
 
-```
-pgsql
+```sql
 
 nyc_taxi=# 
 \dn
@@ -46,8 +45,7 @@ nyc_taxi=#
 ```
 - Create schema called nyc_taxi
 
-```
-pgsql
+```sql
 
 create schema nyc_taxi;
 
@@ -55,8 +53,7 @@ CREATE SCHEMA
 ```
 - List schemas created:
   
-```
-pgsql
+```sql
 
 \dn
      List of schemas
@@ -73,8 +70,7 @@ __2. Run new table DDLs & insert data__
 
 - Create raw table for storing raw nyc data
   
-```
-pgsql
+```sql
 
 CREATE TABLE nyc_taxi_raw.raw_nyc_taxi_trips (
     trip_id SERIAL PRIMARY KEY,
@@ -90,8 +86,7 @@ CREATE TABLE nyc_taxi_raw.raw_nyc_taxi_trips (
 
 - Insert raw date to table:
 
-```
-pgsql
+```sql
 
 INSERT INTO nyc_taxi_raw.raw_nyc_taxi_trips
 (pickup_datetime, dropoff_datetime, pickup_borough, dropoff_borough, fare_amount, passenger_count, payment_type)
@@ -106,8 +101,8 @@ INSERT 0 3
 __3. Set up dbt project using bash__
 
 - Create your models folder structure:
-```
-bash
+  
+```bash
 
 (.ven)  nyc_taxi_dbt % mkdir -p models/staging
 (.ven)  nyc_taxi_dbt % mkdir -p models/marts/dim
@@ -146,15 +141,14 @@ __4.  Run and build the models in DBT__
 
 - Run dbt models:
 
-```
-bash
+```bash
 
 dbt test
 
 ```
 
-```
-bash
+```bash
+
 nyc_taxi_dbt % dbt run
 
 ```
@@ -172,8 +166,7 @@ Build the __stating table__ from the raw schema tables
 
 - pre- calculate the trip duration mins ((dropoff_datetime - pickup_datetime)) / 60 = trip duration in minutes
 
-```
-dbt
+```sql
 
 WITH base AS (
     SELECT *
@@ -199,8 +192,8 @@ Build the __fact table__ from data avialable in staging schema to calculate;
 - the average fare amount 
 - the duration ofthe trip in minutes
 
-          ```
-          dbt
+``` sql
+  
           SELECT
               pickup_borough,
               dropoff_borough,
@@ -210,7 +203,7 @@ Build the __fact table__ from data avialable in staging schema to calculate;
           FROM {{ ref('stg_nyc_taxi_trips') }}
           GROUP BY pickup_borough, dropoff_borough
           
-          ```
+```
 
   
 
@@ -218,8 +211,7 @@ __5. Document the Models__
 
 - Generate catalog for documentation
 
-```
-bash
+```bash
 
 nyc_taxi_dbt % dbt docs generate
 
@@ -228,8 +220,7 @@ nyc_taxi_dbt % dbt docs generate
 
 - Generate documentation server
 
-```
-bash
+```bash
 
  nyc_taxi_dbt % dbt docs serve
 
