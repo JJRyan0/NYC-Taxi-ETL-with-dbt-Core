@@ -162,6 +162,58 @@ nyc_taxi_dbt % dbt run
 <img width="845" alt="image" src="https://github.com/user-attachments/assets/b9ff44b0-153d-4df6-ae47-2728d3c22f00" />
 
 
+
+
+
+
+__dbt Pipeline Transformations__
+
+Build the __stating table__ from the raw schema tables 
+
+- pre- calculate the trip duration mins ((dropoff_datetime - pickup_datetime)) / 60 = trip duration in minutes
+
+```
+dbt
+
+WITH base AS (
+    SELECT *
+    FROM {{ source('nyc_taxi_raw', 'raw_nyc_taxi_trips') }}
+)
+SELECT
+    trip_id,
+    pickup_datetime,
+    dropoff_datetime,
+    pickup_borough,
+    dropoff_borough,
+    fare_amount,
+    passenger_count,
+    payment_type,
+    EXTRACT(EPOCH FROM (dropoff_datetime - pickup_datetime)) / 60 AS trip_duration_min
+FROM base
+
+```
+
+Build the __fact table__ from data avialable in staging schema to calculate;
+     
+- the total trips made 
+- the average fare amount 
+- the duration ofthe trip in minutes
+
+          ```
+          dbt
+          SELECT
+              pickup_borough,
+              dropoff_borough,
+              COUNT(*) AS total_trips,
+              ROUND(AVG(fare_amount), 2) AS avg_fare,
+              ROUND(AVG(trip_duration_min)::numeric, 2) AS avg_trip_duration
+          FROM {{ ref('stg_nyc_taxi_trips') }}
+          GROUP BY pickup_borough, dropoff_borough
+          
+          ```
+
+  
+
 __5. Document the Models__
 
 - Generate catalog for documentation
