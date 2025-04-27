@@ -1,7 +1,21 @@
-# NYC Taxi ETL with dbt Core
+# NYC Taxi ETL Pipeline with dbt Core & PostgresSQL
+-------------------------------------
 
-This is a sample dbt project for transforming NYC Taxi trip data using PostgreSQL.
+## Project Overview
+This project aims to leverage the vast amount of NYC taxi trip data to provide valuable insights and actionable business intelligence for stakeholders in the transportation, logistics, and urban planning sectors. By transforming and modeling the raw data using DBT (Data Build Tool), we are able to create reliable and high-performance data models that support various analyses and reporting use cases, such as:
 
+* __Performance Analysis:__ Analyzing the number of trips, revenue, and other key metrics to identify performance trends.
+
+* __Customer Behavior Insights:__ Understanding ride patterns and peak times, helping businesses make data-driven decisions about fleet optimization, driver incentives, and promotions.
+
+* __Operational Efficiency:__ Providing decision-makers with insights into how different areas of the city are performing in terms of service delivery, helping to improve operational strategies.
+
+* __Urban Planning:__ Supporting transportation infrastructure planning by identifying high-demand zones and peak traffic hours, providing insights for city planners and policymakers.
+
+* __Revenue Forecasting:__ Helping business units predict future revenues based on historical trip data, optimizing resource allocation and pricing strategies.
+
+## ETL Data Flow Diagram
+---------------------------
 
 ![Screenshot 2025-04-21 at 11 06 17 AM](https://github.com/user-attachments/assets/b6b3532a-57ce-49e8-a5e4-af17e6345ac1)
 
