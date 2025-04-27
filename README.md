@@ -14,6 +14,13 @@ This project aims to leverage the vast amount of NYC taxi trip data to provide v
 
 * __Revenue Forecasting:__ Helping business units predict future revenues based on historical trip data, optimizing resource allocation and pricing strategies.
 
+## Business Objectives
+The goal of this DBT project is to transform raw NYC taxi trip data into structured, actionable insights that serve various business objectives, such as:
+
+* __Improving Fleet Management:__ Enable businesses to track ride requests and driver performance more effectively, ensuring better service delivery.
+
+* __Optimizing Ride Pricing:__ Help businesses and regulators to understand pricing models, allowing for adjustments based on demand or specific areas.
+
 ## ETL Data Flow Diagram
 ---------------------------
 
