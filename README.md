@@ -1,6 +1,6 @@
 # NYC Taxi ETL Pipeline with dbt Core & PostgresSQL
 -------------------------------------
-JJRYAN0  27-04-2025
+Created Date: _JJRYAN0 - 27-04-2025_
 
 ## Project Overview
 This project aims to leverage the vast amount of NYC taxi trip data to provide valuable insights and actionable business intelligence for stakeholders in the transportation, logistics, and urban planning sectors. By transforming and modeling the raw data using DBT (Data Build Tool), we are able to create reliable and high-performance data models that support various analyses and reporting use cases, such as:
